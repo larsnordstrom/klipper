@@ -19,12 +19,12 @@ class HomingHeaters:
         self.disable_heaters = []
         self.steppers_needing_quiet = config.get("steppers", "")
         self.flaky_steppers = []
-        self.pheater = self.printer.lookup_object('heater')
+        self.pheaters = self.printer.load_object(config, 'heaters')
         self.target_save = {}
 
     def handle_connect(self):
         # heaters to disable
-        all_heaters = self.pheater.get_all_heaters()
+        all_heaters = self.pheaters.get_all_heaters()
         self.disable_heaters = [n.strip()
                           for n in self.heaters_to_disable.split(',')]
         if self.disable_heaters == [""]:
@@ -52,18 +52,18 @@ class HomingHeaters:
                                 for es in endstops
                                 for s in es.get_steppers()]
         return any(x in self.flaky_steppers for x in steppers_being_homed)
-    def handle_homing_move_begin(self, endstops):
-        if not self.check_eligible(endstops):
+    def handle_homing_move_begin(self, hmove):
+        if not self.check_eligible(hmove.get_mcu_endstops()):
             return
         for heater_name in self.disable_heaters:
-            heater = self.pheater.lookup_heater(heater_name)
+            heater = self.pheaters.lookup_heater(heater_name)
             self.target_save[heater_name] = heater.get_temp(0)[1]
             heater.set_temp(0.)
-    def handle_homing_move_end(self, endstops):
-        if not self.check_eligible(endstops):
+    def handle_homing_move_end(self, hmove):
+        if not self.check_eligible(hmove.get_mcu_endstops()):
             return
         for heater_name in self.disable_heaters:
-            heater = self.pheater.lookup_heater(heater_name)
+            heater = self.pheaters.lookup_heater(heater_name)
             heater.set_temp(self.target_save[heater_name])
 
 def load_config(config):
