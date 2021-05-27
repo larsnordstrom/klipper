@@ -32,6 +32,7 @@ struct queue_message {
             double sent_time, receive_time;
         };
     };
+    uint64_t notify_id;
     struct list_node node;
 };
 
@@ -42,10 +43,12 @@ struct pull_queue_message {
     uint8_t msg[MESSAGE_MAX];
     int len;
     double sent_time, receive_time;
+    uint64_t notify_id;
 };
 
 struct serialqueue;
-struct serialqueue *serialqueue_alloc(int serial_fd, int write_only);
+struct serialqueue *serialqueue_alloc(int serial_fd, char serial_fd_type
+                                      , int client_id);
 void serialqueue_exit(struct serialqueue *sq);
 void serialqueue_free(struct serialqueue *sq);
 struct command_queue *serialqueue_alloc_commandqueue(void);
@@ -53,13 +56,11 @@ void serialqueue_free_commandqueue(struct command_queue *cq);
 void serialqueue_send_batch(struct serialqueue *sq, struct command_queue *cq
                             , struct list_head *msgs);
 void serialqueue_send(struct serialqueue *sq, struct command_queue *cq
-                      , uint8_t *msg, int len
-                      , uint64_t min_clock, uint64_t req_clock);
-void serialqueue_encode_and_send(
-    struct serialqueue *sq, struct command_queue *cq
-    , uint32_t *data, int len, uint64_t min_clock, uint64_t req_clock);
+                      , uint8_t *msg, int len, uint64_t min_clock
+                      , uint64_t req_clock, uint64_t notify_id);
 void serialqueue_pull(struct serialqueue *sq, struct pull_queue_message *pqm);
 void serialqueue_set_baud_adjust(struct serialqueue *sq, double baud_adjust);
+void serialqueue_set_receive_window(struct serialqueue *sq, int receive_window);
 void serialqueue_set_clock_est(struct serialqueue *sq, double est_freq
                                , double last_clock_time, uint64_t last_clock);
 void serialqueue_get_stats(struct serialqueue *sq, char *buf, int len);
