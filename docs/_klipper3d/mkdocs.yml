@@ -2,8 +2,8 @@
 
 # Site and directory configuration
 site_name: Klipper documentation
-repo_url: https://github.com/KevinOConnor/klipper
-repo_name: KevinOConnor/klipper
+repo_url: https://github.com/Klipper3d/klipper
+repo_name: Klipper3d/klipper
 edit_uri: blob/master/docs/
 use_directory_urls: False
 docs_dir: '../'
@@ -94,14 +94,15 @@ nav:
       - Resonance_Compensation.md
       - Measuring_Resonances.md
     - Pressure_Advance.md
-    - Slicers.md
+    - G-Codes.md
     - Command templates:
       - Command_Templates.md
       - Status_Reference.md
     - TMC_Drivers.md
+    - Multi_MCU_Homing.md
+    - Slicers.md
     - skew_correction.md
     - Using_PWM_Tools.md
-    - G-Codes.md
   - Developer Documentation:
     - Code_Overview.md
     - Kinematics.md

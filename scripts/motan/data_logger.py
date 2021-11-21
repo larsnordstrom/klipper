@@ -150,8 +150,19 @@ class DataLogger:
         for stepper in motion_report.get("steppers", []):
             self.send_subscribe("stepq:" + stepper,
                                 "motion_report/dump_stepper", {"name": stepper})
+        # Subscribe to additional sensor data
+        config = status["configfile"]["settings"]
+        for cfgname in config.keys():
+            if cfgname == "adxl345" or cfgname.startswith("adxl345 "):
+                aname = cfgname.split()[-1]
+                self.send_subscribe("adxl345:" + aname, "adxl345/dump_adxl345",
+                                    {"sensor": aname})
     def handle_dump(self, msg, raw_msg):
         msg_id = msg["id"]
+        if "result" not in msg:
+            self.error("Unable to subscribe to '%s': %s"
+                       % (msg_id, msg.get("error", {}).get("message", "")))
+            return
         self.db.setdefault("subscriptions", {})[msg_id] = msg["result"]
     def flush_index(self):
         self.db['file_position'] = self.logger.flush()

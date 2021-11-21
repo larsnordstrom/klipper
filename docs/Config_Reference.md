@@ -119,7 +119,9 @@ different names for the stepper (eg, `stepper_x` vs `stepper_a`).
 Below are common stepper definitions.
 
 See the [rotation distance document](Rotation_Distance.md) for
-information on calculating the `rotation_distance` parameter.
+information on calculating the `rotation_distance` parameter. See the
+[Multi-MCU homing](Multi_MCU_Homing.md) document for information on
+homing using multiple micro-controllers.
 
 ```
 [stepper_x]
@@ -151,9 +153,16 @@ microsteps:
 #   gear_ratio is specified then rotation_distance specifies the
 #   distance the axis travels for one full rotation of the final gear.
 #   The default is to not use a gear ratio.
+#step_pulse_duration:
+#   The minimum time between the step pulse signal edge and the
+#   following "unstep" signal edge. This is also used to set the
+#   minimum time between a step pulse and a direction change signal.
+#   The default is 0.000002 (which is 2us).
 endstop_pin:
-#   Endstop switch detection pin. This parameter must be provided for
-#   the X, Y, and Z steppers on cartesian style printers.
+#   Endstop switch detection pin. If this endstop pin is on a
+#   different mcu than the stepper motor then it enables "multi-mcu
+#   homing". This parameter must be provided for the X, Y, and Z
+#   steppers on cartesian style printers.
 #position_min: 0
 #   Minimum valid distance (in mm) the user may command the stepper to
 #   move to.  The default is 0mm.
@@ -692,10 +701,11 @@ heater_pin:
 #   periods) to the heater. The default is 1.0.
 sensor_type:
 #   Type of sensor - common thermistors are "EPCOS 100K B57560G104F",
-#   "ATC Semitec 104GT-2", "NTC 100K beta 3950", "Honeywell 100K
-#   135-104LAG-J01", "NTC 100K MGB18-104F39050L32", "SliceEngineering
-#   450", and "TDK NTCG104LH104JT1". See the "Temperature sensors"
-#   section for other sensors. This parameter must be provided.
+#   "ATC Semitec 104GT-2", "ATC Semitec 104NT-4-R025H42G", "Generic
+#   3950","Honeywell 100K 135-104LAG-J01", "NTC 100K MGB18-104F39050L32",
+#   "SliceEngineering 450", and "TDK NTCG104LH104JT1". See the
+#   "Temperature sensors" section for other sensors. This parameter
+#   must be provided.
 sensor_pin:
 #   Analog input pin connected to the sensor. This parameter must be
 #   provided.
@@ -703,10 +713,10 @@ sensor_pin:
 #   The resistance (in ohms) of the pullup attached to the thermistor.
 #   This parameter is only valid when the sensor is a thermistor. The
 #   default is 4700 ohms.
-#smooth_time: 2.0
+#smooth_time: 1.0
 #   A time value (in seconds) over which temperature measurements will
 #   be smoothed to reduce the impact of measurement noise. The default
-#   is 2 seconds.
+#   is 1 seconds.
 control:
 #   Control algorithm (either pid or watermark). This parameter must
 #   be provided.
@@ -1611,7 +1621,9 @@ stepper_z config section.
 ```
 [probe]
 pin:
-#   Probe detection pin. This parameter must be provided.
+#   Probe detection pin. If the pin is on a different microcontroller
+#   than the Z steppers then it enables "multi-mcu homing". This
+#   parameter must be provided.
 #deactivate_on_each_sample: True
 #   This determines if Klipper should execute deactivation gcode
 #   between each probe attempt when performing a multiple probe
@@ -2047,9 +2059,9 @@ sections that use one of these sensors.
 ```
 sensor_type:
 #   One of "EPCOS 100K B57560G104F", "ATC Semitec 104GT-2",
-#   "NTC 100K beta 3950", "Honeywell 100K 135-104LAG-J01",
-#   "NTC 100K MGB18-104F39050L32", "SliceEngineering 450", or
-#   "TDK NTCG104LH104JT1"
+#   "ATC Semitec 104NT-4-R025H42G", "Generic 3950",
+#   "Honeywell 100K 135-104LAG-J01", "NTC 100K MGB18-104F39050L32",
+#   "SliceEngineering 450", or "TDK NTCG104LH104JT1"
 sensor_pin:
 #   Analog input pin connected to the thermistor. This parameter must
 #   be provided.
@@ -2195,7 +2207,7 @@ have range up to 125 C, so are usable for e.g. chamber temperature
 monitoring. They can also function as simple fan/heater controllers.
 
 ```
-sensor_type: lm75
+sensor_type: LM75
 #i2c_address:
 #   Default is 72 (0x48). Normal range is 72-79 (0x48-0x4F) and the 3
 #   low bits of the address are configured via pins on the chip
@@ -2754,8 +2766,8 @@ run_current:
 #   during stepper movement. This parameter must be provided.
 #hold_current:
 #   The amount of current (in amps RMS) to configure the driver to use
-#   when the stepper is not moving. The default is to use the same
-#   value as run_current.
+#   when the stepper is not moving. The default is to not reduce the
+#   current.
 #sense_resistor: 0.110
 #   The resistance (in ohms) of the motor sense resistor. The default
 #   is 0.110 ohms.
@@ -3234,6 +3246,11 @@ lcd_type:
 #encoder_pins:
 #   The pins connected to encoder. 2 pins must be provided when using
 #   encoder. This parameter must be provided when using menu.
+#encoder_steps_per_detent:
+#   How many steps the encoder emits per detent ("click"). If the
+#   encoder takes two detents to move between entries or moves two
+#   entries from one detent, try changing this. Allowed values are 2
+#   (half-stepping) or 4 (full-stepping). The default is 4.
 #click_pin:
 #   The pin connected to 'enter' button or encoder 'click'. This
 #   parameter must be provided when using menu. The presence of an
