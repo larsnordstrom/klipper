@@ -58,9 +58,12 @@ functions are declared using the DECL_COMMAND() macro (see the
 
 Task, init, and command functions always run with interrupts enabled
 (however, they can temporarily disable interrupts if needed). These
-functions should never pause, delay, or do any work that lasts more
-than a few micro-seconds. These functions schedule work at specific
-times by scheduling timers.
+functions should avoid long pauses, delays, or do work that lasts a
+significant time. (Long delays in these "task" functions result in
+scheduling jitter for other "tasks" - delays over 100us may become
+noticeable, delays over 500us may result in command retransmissions,
+delays over 100ms may result in watchdog reboots.) These functions
+schedule work at specific times by scheduling timers.
 
 Timer functions are scheduled by calling sched_add_timer() (located in
 **src/sched.c**). The scheduler code will arrange for the given
@@ -388,8 +391,8 @@ Useful steps:
 3. The first main coding task is to bring up communication support to
    the target board. This is the most difficult step in a new port.
    Once basic communication is working, the remaining steps tend to be
-   much easier. It is typical to use an RS-232 style serial port
-   during initial development as these types of hardware devices are
+   much easier. It is typical to use a UART type serial device during
+   initial development as these types of hardware devices are
    generally easier to enable and control. During this phase, make
    liberal use of helper code from the src/generic/ directory (check
    how src/simulator/Makefile includes the generic C code into the
@@ -415,6 +418,20 @@ Useful steps:
 8. Create a sample Klipper config file in the config/ directory. Test
    the micro-controller with the main klippy.py program.
 9. Consider adding build test cases in the test/ directory.
+
+Additional coding tips:
+1. Avoid using "C bitfields" to access IO registers; prefer direct
+   read and write operations of 32bit, 16bit, or 8bit integers. The C
+   language specifications don't clearly specify how the compiler must
+   implement C bitfields (eg, endianness, and bit layout), and it's
+   difficult to determine what IO operations will occur on a C
+   bitfield read or write.
+2. Prefer writing explicit values to IO registers instead of using
+   read-modify-write operations. That is, if updating a field in an IO
+   register where the other fields have known values, then it is
+   preferable to explicitly write the full contents of the register.
+   Explicit writes produce code that is smaller, faster, and easier to
+   debug.
 
 ## Coordinate Systems
 
