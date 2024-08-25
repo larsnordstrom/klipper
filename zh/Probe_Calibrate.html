@@ -9,7 +9,7 @@
       
       
       <link rel="icon" href="img/favicon.ico">
-      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.1.3">
+      <meta name="generator" content="mkdocs-1.2.4, mkdocs-material-8.1.3">
     
     
       
@@ -46,8 +46,8 @@
   
 
 
-  <script>window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga("create","UA-138371409-1","auto"),ga("set","anonymizeIp",!0),ga("send","pageview"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){var e;this.value&&(e=document.location.pathname,ga("send","pageview",e+"?q="+this.value))}),"undefined"!=typeof location$&&location$.subscribe(function(e){ga("send","pageview",e.pathname)})})</script>
-  <script async src="https://www.google-analytics.com/analytics.js"></script>
+  <script>function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","G-VEN1PGNQL4"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){this.value&&gtag("event","search",{search_term:this.value})}),"undefined"!=typeof location$&&location$.subscribe(function(e){gtag("config","G-VEN1PGNQL4",{page_path:e.pathname})})})</script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-VEN1PGNQL4"></script>
 
 
     
@@ -166,6 +166,18 @@
                 <li class="md-select__item">
                   <a href="/hu/" hreflang="hu" class="md-select__link">
                     Magyar
+                  </a>
+                </li>
+                
+                <li class="md-select__item">
+                  <a href="/it/" hreflang="it" class="md-select__link">
+                    Italiano
+                  </a>
+                </li>
+                
+                <li class="md-select__item">
+                  <a href="/fr/" hreflang="fr" class="md-select__link">
+                    Français
                   </a>
                 </li>
                 
@@ -327,7 +339,7 @@
   
     <li class="md-nav__item">
       <a href="Releases.html" class="md-nav__link">
-        版本发布
+        发行说明
       </a>
     </li>
   
@@ -398,10 +410,57 @@
   
   
   
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7_1" type="checkbox" id="__nav_7_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_7_1">
+          Installation
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Installation" data-md-level="2">
+        <label class="md-nav__title" for="__nav_7_1">
+          <span class="md-nav__icon md-icon"></span>
+          Installation
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
     <li class="md-nav__item">
       <a href="Installation.html" class="md-nav__link">
         安装
       </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="OctoPrint.md" class="md-nav__link">
+        None
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
     </li>
   
 
@@ -671,6 +730,20 @@
     <li class="md-nav__item">
       <a href="Endstop_Phase.html" class="md-nav__link">
         限位相位
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Axis_Twist_Compensation.html" class="md-nav__link">
+        轴扭曲补偿
       </a>
     </li>
   
@@ -1202,8 +1275,36 @@
   
   
     <li class="md-nav__item">
+      <a href="Bootloader_Entry.html" class="md-nav__link">
+        引导加载程序条目
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="CANBUS.html" class="md-nav__link">
         CAN 总线
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="CANBUS_Troubleshooting.html" class="md-nav__link">
+        CanBus故障排除
       </a>
     </li>
   
@@ -1238,8 +1339,37 @@
 
             
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Eddy_Probe.md" class="md-nav__link">
+        None
+      </a>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Sponsors.html" class="md-nav__link">
+        赞助
+      </a>
     </li>
   
 
@@ -1346,7 +1476,7 @@
 <p>准确的探针 z 偏移(z_offset)是高质量打印的基础。z 偏移是探针触发时探针和喷嘴之间的高度差。Klipper 中的 <code>PROBE_CALIBRATE</code>（探针校准）工具可用于测量这个值——首先，该工具会运行一次自动探测以获取探针的 z 触发位置，然后需要手动调整Z坐标以获取喷嘴碰触到热床时的 z 高度。然后将根据这些测量值计算探针的 z 偏移。</p>
 <p>首先进行三轴的归零，然后将喷嘴移动到热床的中央位置。转到OctoPrint的“命令行（Terminal）”子页，输入 <code>PROBE_CALIBRATE</code>以启动z_offset校准工具。</p>
 <p>工具首先会令探针进行一次自动探测，获取触发探针的z位置，之后，控制喷嘴上升，并将喷嘴的X/Y位置移动到探针对应位置上，并开始手动调平流程。如果喷嘴没有移动到探针进行自动探测的位置，输入<code>ABORT</code>以停止手动调平，并上文根据X、y偏移校准流程进行探针X、Y校准。</p>
-<p>进入手动调平的过程后，请按照<a href="Bed_Level.html#the-paper-test">“纸片测试”</a>的流程，确定在探针探测位置上，喷嘴与热床之间的距离。完成上述流程后，使用<code>ACCEPT</code>命令将测量到的z_offset应用到当前配置，如需要保存配置到文件，则键入：</p>
+<p>Once the manual probe tool starts, follow the steps described at <a href="Bed_Level.html#the-paper-test">"the paper test"</a> to determine the actual distance between the nozzle and bed at the given location. Once those steps are complete one can <code>ACCEPT</code> the position and save the results to the config file with:</p>
 <div class="highlight"><pre><span></span><code>SAVE_CONFIG
 </code></pre></div>
 
@@ -1379,7 +1509,7 @@ Recv: // probe accuracy results: maximum 2.519448, minimum 2.506948, range 0.012
 <p>上述状况往往出现在三角洲打印机上，然而，所有打印机均有可能发生上述状况。</p>
 <p>我们可以在不同的XY位置上使用<code>PROBE_CALIBRATE</code>命令测量z_offset来确定位置偏差。理想情况下，z_offset在任意位置均为同一读值。</p>
 <p>对于三角洲打印机，请尝试依次在靠近A柱、B柱和C柱的位置测量z_offset。对于龙门、corexy或类似结构打印机，尝试在热床的四个角进行z_offset的测量。</p>
-<p>在进行上述测试前，应先按照本文档的开头部分对X、Y、Z的偏移值进行校准，然后对打印机进行归零，并将探针移动到首个目标XY位置。按照<a href="#探针Z偏移值校准">探针Z偏移值校准</a>的步骤，运行<code>PROBE_CALIBRATE</code>，重复多次<code>TESTZ</code>命令，并在喷嘴触床时使用 <code>ACCEPT</code>命令，但是<strong>切勿使用 <code>SAVE_CONFIG</code></strong>。手动记下此时的z_offset 。之后将探针移动到其他XY位置，重复上述的<code>PROBE_CALIBRATE</code>步骤，并分别记下z_offset。</p>
+<p>在开始测试之前，首先按照本文件开头所述校准探头X、Y和Z偏移量。然后回到打印机主页并导航到第一个XY位置。按照<a href="#calibrating-probe-z-offset">校准探头Z偏移量</a>中的步骤运行<code>PROBE_CALIBRATE</code>命令、<code>TESTZ</code>命令和<code>ACCEPT</code>命令，但不运行<code>SAVE_CONFIG</code>。请注意已找到报告的z_Offset。然后导航到其他XY位置，重复这些`PROBE_CALIBRATE‘步骤，并注意报告的z_Offset。</p>
 <p>如果上述方法中测出的最大z_offset 和最小z_offset 之间的差值大于25微米（.025mm），则该探针不适用于常规的热床调平。此时应参照 <a href="Bed_Level.html">热床调平</a> 文档的手动调平部分进行调平。</p>
 <h2 id="_4">温度偏差<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
 <p>对于多种形式的探针，在不同的温度下工作均具有一定的系统性偏差。比如，在高温下，探针可能总是在更低的高度下触发。</p>

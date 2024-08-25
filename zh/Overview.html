@@ -9,7 +9,7 @@
       
       
       <link rel="icon" href="img/favicon.ico">
-      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.1.3">
+      <meta name="generator" content="mkdocs-1.2.4, mkdocs-material-8.1.3">
     
     
       
@@ -46,8 +46,8 @@
   
 
 
-  <script>window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga("create","UA-138371409-1","auto"),ga("set","anonymizeIp",!0),ga("send","pageview"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){var e;this.value&&(e=document.location.pathname,ga("send","pageview",e+"?q="+this.value))}),"undefined"!=typeof location$&&location$.subscribe(function(e){ga("send","pageview",e.pathname)})})</script>
-  <script async src="https://www.google-analytics.com/analytics.js"></script>
+  <script>function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","G-VEN1PGNQL4"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){this.value&&gtag("event","search",{search_term:this.value})}),"undefined"!=typeof location$&&location$.subscribe(function(e){gtag("config","G-VEN1PGNQL4",{page_path:e.pathname})})})</script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-VEN1PGNQL4"></script>
 
 
     
@@ -166,6 +166,18 @@
                 <li class="md-select__item">
                   <a href="/hu/" hreflang="hu" class="md-select__link">
                     Magyar
+                  </a>
+                </li>
+                
+                <li class="md-select__item">
+                  <a href="/it/" hreflang="it" class="md-select__link">
+                    Italiano
+                  </a>
+                </li>
+                
+                <li class="md-select__item">
+                  <a href="/fr/" hreflang="fr" class="md-select__link">
+                    Français
                   </a>
                 </li>
                 
@@ -389,7 +401,7 @@
   
     <li class="md-nav__item">
       <a href="Releases.html" class="md-nav__link">
-        版本发布
+        发行说明
       </a>
     </li>
   
@@ -458,10 +470,57 @@
   
   
   
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7_1" type="checkbox" id="__nav_7_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_7_1">
+          Installation
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Installation" data-md-level="2">
+        <label class="md-nav__title" for="__nav_7_1">
+          <span class="md-nav__icon md-icon"></span>
+          Installation
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
     <li class="md-nav__item">
       <a href="Installation.html" class="md-nav__link">
         安装
       </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="OctoPrint.md" class="md-nav__link">
+        None
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
     </li>
   
 
@@ -660,6 +719,20 @@
     <li class="md-nav__item">
       <a href="Endstop_Phase.html" class="md-nav__link">
         限位相位
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Axis_Twist_Compensation.html" class="md-nav__link">
+        轴扭曲补偿
       </a>
     </li>
   
@@ -1191,8 +1264,36 @@
   
   
     <li class="md-nav__item">
+      <a href="Bootloader_Entry.html" class="md-nav__link">
+        引导加载程序条目
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="CANBUS.html" class="md-nav__link">
         CAN 总线
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="CANBUS_Troubleshooting.html" class="md-nav__link">
+        CanBus故障排除
       </a>
     </li>
   
@@ -1227,8 +1328,37 @@
 
             
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Eddy_Probe.md" class="md-nav__link">
+        None
+      </a>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Sponsors.html" class="md-nav__link">
+        赞助
+      </a>
     </li>
   
 
@@ -1329,6 +1459,7 @@
 <li><a href="Manual_Level.html">手动调平</a>：校准 Z 限位和调整热床调平螺丝。</li>
 <li><a href="Bed_Mesh.html">床网</a>：基于 XY 位置的打印床高度补偿。</li>
 <li><a href="Endstop_Phase.html">限位相位</a>：使用步进电机相位辅助 Z 限位定位。</li>
+<li><a href="Axis_Twist_Compensation.html">Axis Twist Compensation.md</a>：用于补偿因X台架扭曲而导致的探头读数不准确的工具。</li>
 </ul>
 </li>
 <li><a href="Resonance_Compensation.html">共振补偿</a>：减少打印震纹的工具。<ul>
@@ -1368,7 +1499,11 @@
 <li><a href="RPi_microcontroller.html">将树莓派作为微控制器</a>：关于如何控制与树莓派 GPIO 引脚连接的设备。</li>
 <li><a href="Beaglebone.html">Beaglebone</a>：在 Beaglebone PRU 上运行 Klipper 的详细信息。</li>
 <li><a href="Bootloaders.html">底层引导程序</a>：有关于微控制器刷写的开发者信息。</li>
-<li><a href="CANBUS.html">CAN 总线</a>：有关于 Klipper 使用 CAN 总线的信息。</li>
+<li><a href="Bootloader_Entry.html">Bootloader Entry</a>: 正在请求引导加载程序。</li>
+<li><a href="CANBUS.html">CAN 总线</a>：有关于 Klipper 使用 CAN 总线的信息。<ul>
+<li><a href="CanBus_Troublrouoting.md">CAN Bus故障排除</a>：CAN Bus故障排除提示。</li>
+</ul>
+</li>
 <li><a href="TSL1401CL_Filament_Width_Sensor.html">TSL1401CL 耗材线径传感器</a></li>
 <li><a href="Hall_Filament_Width_Sensor.html">霍尔打印丝宽度传感器</a></li>
 </ul>

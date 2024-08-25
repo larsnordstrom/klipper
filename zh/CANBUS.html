@@ -9,7 +9,7 @@
       
       
       <link rel="icon" href="img/favicon.ico">
-      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.1.3">
+      <meta name="generator" content="mkdocs-1.2.4, mkdocs-material-8.1.3">
     
     
       
@@ -46,8 +46,8 @@
   
 
 
-  <script>window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga("create","UA-138371409-1","auto"),ga("set","anonymizeIp",!0),ga("send","pageview"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){var e;this.value&&(e=document.location.pathname,ga("send","pageview",e+"?q="+this.value))}),"undefined"!=typeof location$&&location$.subscribe(function(e){ga("send","pageview",e.pathname)})})</script>
-  <script async src="https://www.google-analytics.com/analytics.js"></script>
+  <script>function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","G-VEN1PGNQL4"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){this.value&&gtag("event","search",{search_term:this.value})}),"undefined"!=typeof location$&&location$.subscribe(function(e){gtag("config","G-VEN1PGNQL4",{page_path:e.pathname})})})</script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-VEN1PGNQL4"></script>
 
 
     
@@ -166,6 +166,18 @@
                 <li class="md-select__item">
                   <a href="/hu/" hreflang="hu" class="md-select__link">
                     Magyar
+                  </a>
+                </li>
+                
+                <li class="md-select__item">
+                  <a href="/it/" hreflang="it" class="md-select__link">
+                    Italiano
+                  </a>
+                </li>
+                
+                <li class="md-select__item">
+                  <a href="/fr/" hreflang="fr" class="md-select__link">
+                    Français
                   </a>
                 </li>
                 
@@ -327,7 +339,7 @@
   
     <li class="md-nav__item">
       <a href="Releases.html" class="md-nav__link">
-        版本发布
+        发行说明
       </a>
     </li>
   
@@ -396,10 +408,57 @@
   
   
   
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7_1" type="checkbox" id="__nav_7_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_7_1">
+          Installation
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Installation" data-md-level="2">
+        <label class="md-nav__title" for="__nav_7_1">
+          <span class="md-nav__icon md-icon"></span>
+          Installation
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
     <li class="md-nav__item">
       <a href="Installation.html" class="md-nav__link">
         安装
       </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="OctoPrint.md" class="md-nav__link">
+        None
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
     </li>
   
 
@@ -598,6 +657,20 @@
     <li class="md-nav__item">
       <a href="Endstop_Phase.html" class="md-nav__link">
         限位相位
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Axis_Twist_Compensation.html" class="md-nav__link">
+        轴扭曲补偿
       </a>
     </li>
   
@@ -1129,6 +1202,20 @@
               
   
   
+  
+    <li class="md-nav__item">
+      <a href="Bootloader_Entry.html" class="md-nav__link">
+        引导加载程序条目
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
     
   
   
@@ -1206,10 +1293,31 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    故障排除提示
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
       
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="CANBUS_Troubleshooting.html" class="md-nav__link">
+        CanBus故障排除
+      </a>
     </li>
   
 
@@ -1243,8 +1351,37 @@
 
             
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Eddy_Probe.md" class="md-nav__link">
+        None
+      </a>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Sponsors.html" class="md-nav__link">
+        赞助
+      </a>
     </li>
   
 
@@ -1317,6 +1454,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    故障排除提示
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1337,25 +1481,20 @@
 <h1 id="can">CAN 总线<a class="headerlink" href="#can" title="Permanent link">&para;</a></h1>
 <p>本文档描述了 Klipper 的 CAN 总线支持。</p>
 <h2 id="_1">硬件设备<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
-<p>Klipper目前只支持 stm32 芯片的CAN。此外，微控制器芯片必须支持 CAN并且你使用的主板必须有 CAN 收发器。</p>
+<p>Klipper目前支持STM32、SAME5x和rp2040芯片上的CAN。此外，微控制器芯片必须位于具有CAN收发器的板上。</p>
 <p>要针对 CAN 进行编译，请运行 <code>make menuconfig</code>并选择"CAN Bus"作为通信接口。最后，编译微控制器代码并将其刷写到目标控制版上。</p>
 <h2 id="_2">主机硬件<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<p>为了使用 CAN 总线，主机需要一个适配器。目前有两种常见的选择：</p>
-<ol>
-<li>使用<a href="https://www.waveshare.com/rs485-can-hat.htm">Waveshare Raspberry Pi CAN hat</a>或其众多克隆中的一个。</li>
-<li>使用一个USB CAN适配器（例如 <a href="https://hacker-gadgets.com/product/cantact-usb-can-adapter/">https://hacker-gadgets.com/product/cantact-usb-can-adapter/</a>）。有许多不同的USB到CAN适配器—当选择时，我们建议验证它是否能运行<a href="https://github.com/candle-usb/candleLight_fw">candlelight 固件</a>。(不幸的是，我们发现一些USB适配器运行有缺陷的固件，并被锁死，所以在购买前要进行核实。）</li>
-</ol>
+<p>为了使用CAN总线，必须有一个主机适配器。建议使用“USB转CAN适配器”。不同的制造商提供了许多不同的USB转CAN适配器。在选择其中一个时，我们建议验证是否可以在其上更新固件。(不幸的是，我们发现一些USB适配器运行有缺陷的固件并被锁定，因此请在购买之前进行验证。)。寻找可以直接运行Klipper的适配器(在其“USB to CAN桥模式”下)或运行<a href="https://github.com/candle-usb/candleLight_fw">Candlellight firmware</a>.</p>
 <p>还需要将主机操作系统配置为使用适配器。通常可以通过创建一个名为 <code>/etc/network/interfaces.d/can0</code> 的新文件来实现，该文件包含以下内容：</p>
-<div class="highlight"><pre><span></span><code>auto can0
+<div class="highlight"><pre><span></span><code>allow-hotplug can0
 iface can0 can static
-    bitrate 500000
+    bitrate 1000000
     up ifconfig $IFACE txqueuelen 128
 </code></pre></div>
 
-<p>注意，"Raspberry Pi CAN hat" 需要额外<a href="https://www.waveshare.com/wiki/RS485_CAN_HAT">对 config.txt 进行修改</a>。</p>
 <h2 id="_3">终端电阻<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <p>CAN总线在 CANH 和 CANL 导线之间必须两个 120 欧姆的电阻。理想情况下，总线的两端各有一个电阻。</p>
-<p>请注意，有些设备有一个内置的120欧姆电阻（例如，"Waveshare Raspberry Pi CAN hat"有一个难以拆除的贴片电阻）。有些设备根本不带有一个电阻。其他设备有一个选择电阻的机制（通常是一个跳线）。一定要检查 CAN 总线上所有设备的原理图，以确认总线上有两个而且只有两个120欧姆的电阻。</p>
+<p>请注意，有些器件内置了120欧姆的电阻，不易拆卸。有些器件根本不包括电阻器。其他设备具有选择电阻的机制(通常通过连接“引脚跳线”)。务必检查CAN总线上所有器件的原理图，以验证该总线上是否有且只有两个120欧姆电阻。</p>
 <p>要测试电阻是否正确，先切断打印机的电源，并用多用表检查 CANH 和 CANL 线之间的阻值—在正确接线的 CAN 总线上，它应该报告大约60 欧姆。</p>
 <h2 id="canbus_uuid">寻找新微控制器的 canbus_uuid<a class="headerlink" href="#canbus_uuid" title="Permanent link">&para;</a></h2>
 <p>CAN 总线上的每个微控制器都根据编码到每个微控制器中的工厂芯片标识符分配了一个唯一的 ID。要查找每个微控制器设备 ID，请确保硬件已正确供电和接线，然后运行：</p>
@@ -1363,7 +1502,7 @@ iface can0 can static
 </code></pre></div>
 
 <p>如果检测到未初始化的 CAN 设备，上述命令将报告如下行：</p>
-<div class="highlight"><pre><span></span><code>Found canbus_uuid=11aa22bb33cc
+<div class="highlight"><pre><span></span><code>Found canbus_uuid=11aa22bb33cc, Application: Klipper
 </code></pre></div>
 
 <p>每个设备将有一个独特的标识符。在上面的例子中，<code>11aa22bb33cc</code>是微控制器'的"canbus_uuid" 。</p>
@@ -1375,14 +1514,31 @@ canbus_uuid: 11aa22bb33cc
 </code></pre></div>
 
 <h2 id="usbcan">USB转CAN总线桥接模式<a class="headerlink" href="#usbcan" title="Permanent link">&para;</a></h2>
-<p>一些微控制器支持在 "make menuconfig "中选择 "USB 转 CAN 总线桥接"模式。这种模式可以把微控制器作为 "USB到CAN总线适配器"的同时作为Klipper节点使用。</p>
-<p>当Klipper使用这种模式时，微控制器在 Linux 下会显示为一个 "USB CAN总线适配器"。“Klipper 桥接 mcu "本身将出现在这个CAN总线上--它可以通过<code>canbus_query.py</code> ，并像其他CAN总线Klipper节点一样被配置。它将与其他实际在CAN总线上的设备一起出现。</p>
+<p>有些微控制器支持在Klipper的“make menuconfig”中选择“USB to CAN bus bridge” 模式。该模式可使微控制器既可用作“USB转CAN总线适配器”并且同时作为Klipper节点。</p>
+<p>当Klipper使用此模式时，微控制器在Linux下显示为“USB CAN Bus Adapter”。“Klipper网桥MCU”本身看起来就像在此CAN总线上一样-它可以通过<code>canbus_query.py</code>识别，并且必须像其他CAN Bus Klipper节点一样进行配置。</p>
 <p>使用该模式时的一些重要注意事项：</p>
 <ul>
-<li>“桥接MCU” 实际上并不在CAN总线上。传入和传出的消息不会占用CAN总线上的带宽。因此位于CAN总线上的其他适配器无法看到MCU。</li>
 <li>有必要在Linux中配置<code>can0</code> （或类似）接口，以便与总线通信。然而，Klipper 会忽略 Linux的CAN总线速度和 CAN 总线bit-timing选项。目前，CAN总线的频率需要在 "make menuconfig "中指定。Linux中指定的总线速度会被忽略。</li>
-<li>每当 "桥接 mcu "被重置时，Linux 将禁用相应的<code>can0</code> 接口。一般来说，这可能需要运行诸如 "ip up "之类的命令来重新启动接口。因此，Klipper FIRMWARE_RESTART 命令 (或配置改变后的常规 RESTART) 可能需要重新启动<code>can0</code> 接口。</li>
+<li>每当桥接MCU重置时，Linux都会关闭相应的<code>can0</code>接口。为了确保Firmware_Restart和Restart命令的正确处理，建议使用<code>/etc/network/interfaces.d/can0</code>文件中的<code>Allow-hotplug</code>。例如：</li>
 </ul>
+<div class="highlight"><pre><span></span><code>allow-hotplug can0
+iface can0 can static
+    bitrate 1000000
+    up ifconfig $IFACE txqueuelen 128
+</code></pre></div>
+
+<ul>
+<li>“桥接MCU”实际上并不在CAN总线上。可能位于CAN总线上的其他适配器不会看到进出桥接器MCU的消息。</li>
+<li>
+<p>“桥式MCU”本身和CAN总线上的所有设备的可用带宽都受到CAN总线频率的有效限制。因此，在使用“USB转CAN总线桥模式”时，建议使用1000000的CAN总线频率。</p>
+<p>即使在CAN总线频率为1000000的情况下，如果XY步进器和加速度计都通过单个“USB to CAN Bus”接口进行通信，也可能没有足够的带宽来运行 <code>SHAPER_CALIBRATE</code> 测试。</p>
+</li>
+</ul>
+<ul>
+<li>USB转CAN桥板不会显示为USB串口设备，也不会在运行<code>ls/dev/Serial/by-id</code>时出现，也不能在Klipper的printer.cfg文件中使用<code>Serial：</code>参数进行配置。桥接板显示为“USB CAN适配器”，并在printer.cfg中配置为<a href="#configuring-klipper">CAN节点</a>。</li>
+</ul>
+<h2 id="_4">故障排除提示<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<p>参见<a href="CanBus_Troublrouoting.md">CAN Bus故障排除</a>文档。</p>
 
               
             </article>
@@ -1401,7 +1557,7 @@ canbus_uuid: 11aa22bb33cc
     <nav class="md-footer__inner md-grid" aria-label="页脚">
       
         
-        <a href="Bootloaders.html" class="md-footer__link md-footer__link--prev" aria-label="上一页: 底层引导程序" rel="prev">
+        <a href="Bootloader_Entry.html" class="md-footer__link md-footer__link--prev" aria-label="上一页: 引导加载程序条目" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -1410,20 +1566,20 @@ canbus_uuid: 11aa22bb33cc
               <span class="md-footer__direction">
                 上一页
               </span>
-              底层引导程序
+              引导加载程序条目
             </div>
           </div>
         </a>
       
       
         
-        <a href="TSL1401CL_Filament_Width_Sensor.html" class="md-footer__link md-footer__link--next" aria-label="下一页: TSL1401CL 耗材宽度传感器" rel="next">
+        <a href="CANBUS_Troubleshooting.html" class="md-footer__link md-footer__link--next" aria-label="下一页: CanBus故障排除" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 下一页
               </span>
-              TSL1401CL 耗材宽度传感器
+              CanBus故障排除
             </div>
           </div>
           <div class="md-footer__button md-icon">

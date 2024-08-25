@@ -9,7 +9,7 @@
       
       
       <link rel="icon" href="img/favicon.ico">
-      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.1.3">
+      <meta name="generator" content="mkdocs-1.2.4, mkdocs-material-8.1.3">
     
     
       
@@ -46,8 +46,8 @@
   
 
 
-  <script>window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga("create","UA-138371409-1","auto"),ga("set","anonymizeIp",!0),ga("send","pageview"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){var e;this.value&&(e=document.location.pathname,ga("send","pageview",e+"?q="+this.value))}),"undefined"!=typeof location$&&location$.subscribe(function(e){ga("send","pageview",e.pathname)})})</script>
-  <script async src="https://www.google-analytics.com/analytics.js"></script>
+  <script>function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","G-VEN1PGNQL4"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){this.value&&gtag("event","search",{search_term:this.value})}),"undefined"!=typeof location$&&location$.subscribe(function(e){gtag("config","G-VEN1PGNQL4",{page_path:e.pathname})})})</script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-VEN1PGNQL4"></script>
 
 
     
@@ -166,6 +166,18 @@
                 <li class="md-select__item">
                   <a href="/hu/" hreflang="hu" class="md-select__link">
                     Magyar
+                  </a>
+                </li>
+                
+                <li class="md-select__item">
+                  <a href="/it/" hreflang="it" class="md-select__link">
+                    Italiano
+                  </a>
+                </li>
+                
+                <li class="md-select__item">
+                  <a href="/fr/" hreflang="fr" class="md-select__link">
+                    Français
                   </a>
                 </li>
                 
@@ -327,7 +339,7 @@
   
     <li class="md-nav__item">
       <a href="Releases.html" class="md-nav__link">
-        版本发布
+        发行说明
       </a>
     </li>
   
@@ -396,10 +408,57 @@
   
   
   
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7_1" type="checkbox" id="__nav_7_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_7_1">
+          Installation
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Installation" data-md-level="2">
+        <label class="md-nav__title" for="__nav_7_1">
+          <span class="md-nav__icon md-icon"></span>
+          Installation
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
     <li class="md-nav__item">
       <a href="Installation.html" class="md-nav__link">
         安装
       </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="OctoPrint.md" class="md-nav__link">
+        None
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
     </li>
   
 
@@ -598,6 +657,20 @@
     <li class="md-nav__item">
       <a href="Endstop_Phase.html" class="md-nav__link">
         限位相位
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Axis_Twist_Compensation.html" class="md-nav__link">
+        轴扭曲补偿
       </a>
     </li>
   
@@ -1221,8 +1294,36 @@
   
   
     <li class="md-nav__item">
+      <a href="Bootloader_Entry.html" class="md-nav__link">
+        引导加载程序条目
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="CANBUS.html" class="md-nav__link">
         CAN 总线
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="CANBUS_Troubleshooting.html" class="md-nav__link">
+        CanBus故障排除
       </a>
     </li>
   
@@ -1257,8 +1358,37 @@
 
             
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Eddy_Probe.md" class="md-nav__link">
+        None
+      </a>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Sponsors.html" class="md-nav__link">
+        赞助
+      </a>
     </li>
   
 
@@ -1371,8 +1501,8 @@
 <p>如果你想把主机作为一个辅助MCU，klipper_mcu进程必须在klippy进程之前运行。</p>
 <p>安装 Klipper 后，运行以下命令来安装脚本：</p>
 <div class="highlight"><pre><span></span><code>cd ~/klipper/
-sudo cp &quot;./scripts/klipper-mcu-start.sh&quot; /etc/init.d/klipper_mcu
-sudo update-rc.d klipper_mcu defaults
+sudo cp ./scripts/klipper-mcu.service /etc/systemd/system/
+sudo systemctl enable klipper-mcu.service
 </code></pre></div>
 
 <h2 id="_1">构建微控制器代码<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
@@ -1492,21 +1622,40 @@ gpiochip1 - 8 lines:
 dtoverlay=pwm,pin=12,func=4
 </code></pre></div>
 
-<p>此示例仅启用 PWM0 并将其路由到 gpio12。如果需要同时启用两个 PWM 通道，则可以使用 <code>pwm-2chan</code>。</p>
-<p>overlay 在启动时不会在 sysfs 上暴露出 PWM 线路，需要通过echo将 PWM 通道的编号导出到 <code>/sys/class/pwm/pwmchip0/export</code>：</p>
-<div class="highlight"><pre><span></span><code>echo 0 &gt; /sys/class/pwm/pwmchip0/export
+<p>This example enables only PWM0 and routes it to gpio12. If both PWM channels need to be enabled you can use <code>pwm-2chan</code>:</p>
+<div class="highlight"><pre><span></span><code># Enable pwmchip sysfs interface
+dtoverlay=pwm-2chan,pin=12,func=4,pin2=13,func2=4
 </code></pre></div>
 
-<p>这将在文件系统中创建设备<code>/sys/class/pwm/kwmchip0/pwm0</code>。最简单的方法是在<code>/etc/rc.local</code>的<code>exit 0</code>行之前添加这行。</p>
+<p>This example additionally enables PWM1 and routes it to gpio13.</p>
+<p>The overlay does not expose the pwm line on sysfs on boot and needs to be exported by echo'ing the number of the pwm channel to <code>/sys/class/pwm/pwmchip0/export</code>. This will create device <code>/sys/class/pwm/pwmchip0/pwm0</code> in the filesystem. The easiest way to do this is by adding this to <code>/etc/rc.local</code> before the <code>exit 0</code> line:</p>
+<div class="highlight"><pre><span></span><code># Enable pwmchip sysfs interface
+echo 0 &gt; /sys/class/pwm/pwmchip0/export
+</code></pre></div>
+
+<p>When using both PWM channels, the number of the second channel needs to be echo'd as well:</p>
+<div class="highlight"><pre><span></span><code># Enable pwmchip sysfs interface
+echo 0 &gt; /sys/class/pwm/pwmchip0/export
+echo 1 &gt; /sys/class/pwm/pwmchip0/export
+</code></pre></div>
+
 <p>有了 sysfs，现在可以通过将以下配置添加到 <code>printer.cfg</code> 来使用 PWM 通道：</p>
 <div class="highlight"><pre><span></span><code>[output_pin caselight]
 pin: host:pwmchip0/pwm0
 pwm: True
 hardware_pwm: True
 cycle_time: 0.000001
+
+[output_pin beeper]
+pin: host:pwmchip0/pwm1
+pwm: True
+hardware_pwm: True
+value: 0
+shutdown_value: 0
+cycle_time: 0.0005
 </code></pre></div>
 
-<p>这将为树莓派上的 gpio12 引脚添加硬件 PWM 控制（因为overlay被配置为将 pwm0 路由到 pin=12）。</p>
+<p>This will add hardware pwm control to gpio12 and gpio13 on the Pi (because the overlay was configured to route pwm0 to pin=12 and pwm1 to pin=13).</p>
 <p>PWM0 可以被路由到 gpio12 和 gpio18，PWM1 可以被路由到 gpio13 和 gpio19：</p>
 <table>
 <thead>
