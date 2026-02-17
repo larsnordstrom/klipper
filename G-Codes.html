@@ -5218,8 +5218,9 @@ reference a defined primary or dual carriage for <code>generic_cartesian</code>
 kinematics or be 0 (for primary carriage) or 1 (for dual carriage)
 for all other kinematics supporting IDEX. Setting the mode to <code>PRIMARY</code>
 deactivates the other carriage and makes the specified carriage execute
-subsequent G-Code commands as-is. <code>COPY</code> and <code>MIRROR</code> modes are supported
-only for dual carriages. When set to either of these modes, dual carriage
+subsequent G-Code commands as-is. Before activating <code>COPY</code> or <code>MIRROR</code>
+mode for a carriage, a different one must be activated as <code>PRIMARY</code> on
+the same axis. When set to either of these two modes, the carriage
 will then track the subsequent moves of its primary carriage and either
 copy relative movements of it (in <code>COPY</code> mode) or execute them in the
 opposite (mirror) direction (in <code>MIRROR</code> mode).</p>
@@ -5760,22 +5761,34 @@ permanent". Requires a <code>SAVE_CONFIG</code> to take effect.</p>
 enabled.</p>
 <h4 id="manual_stepper_1">MANUAL_STEPPER<a class="headerlink" href="#manual_stepper_1" title="Permanent link">&para;</a></h4>
 <p><code>MANUAL_STEPPER STEPPER=config_name [ENABLE=[0|1]]
-[SET_POSITION=&lt;pos&gt;] [SPEED=&lt;speed&gt;] [ACCEL=&lt;accel&gt;] [MOVE=&lt;pos&gt;
-[STOP_ON_ENDSTOP=[1|2|-1|-2]] [SYNC=0]]</code>: This command will alter the
-state of the stepper. Use the ENABLE parameter to enable/disable the
-stepper. Use the SET_POSITION parameter to force the stepper to think
-it is at the given position. Use the MOVE parameter to request a
-movement to the given position. If SPEED and/or ACCEL is specified
-then the given values will be used instead of the defaults specified
-in the config file. If an ACCEL of zero is specified then no
-acceleration will be performed. If STOP_ON_ENDSTOP=1 is specified then
-the move will end early should the endstop report as triggered (use
-STOP_ON_ENDSTOP=2 to complete the move without error even if the
-endstop does not trigger, use -1 or -2 to stop when the endstop
-reports not triggered). Normally future G-Code commands will be
-scheduled to run after the stepper move completes, however if a manual
-stepper move uses SYNC=0 then future G-Code movement commands may run
-in parallel with the stepper movement.</p>
+[SET_POSITION=&lt;pos&gt;] [SPEED=&lt;speed&gt;] [ACCEL=&lt;accel&gt;] [MOVE=&lt;pos&gt;]
+[SYNC=0]]</code>: This command will alter the state of the stepper. Use the
+ENABLE parameter to enable/disable the stepper. Use the SET_POSITION
+parameter to force the stepper to think it is at the given
+position. Use the MOVE parameter to request a movement to the given
+position. If SPEED and/or ACCEL is specified then the given values
+will be used instead of the defaults specified in the config file. If
+an ACCEL of zero is specified then no acceleration will be
+performed. Normally future G-Code commands will be scheduled to run
+after the stepper move completes, however if a manual stepper move
+uses SYNC=0 then future G-Code movement commands may run in parallel
+with the stepper movement.</p>
+<p><code>MANUAL_STEPPER STEPPER=config_name [SPEED=&lt;speed&gt;] [ACCEL=&lt;accel&gt;]
+MOVE=&lt;pos&gt; STOP_ON_ENDSTOP=&lt;check_type&gt;</code>: If STOP_ON_ENDSTOP is
+specified then the move will end early if an endstop event occurs. The
+<code>STOP_ON_ENDSTOP</code> parameter may be set to one of the following values:</p>
+<ul>
+<li><code>probe</code>: The movement will stop when the endstop reports triggered.</li>
+<li><code>home</code>: The movement will stop when the endstop reports triggered
+  and the final position of the manual_stepper will be set such that
+  the trigger position matches the position specified in the <code>MOVE</code>
+  parameter.</li>
+<li><code>inverted_probe</code>, <code>inverted_home</code>: As above, however, the movement
+  will stop when the endstop reports it is in a non-triggered state.</li>
+<li><code>try_probe</code>, <code>try_inverted_probe</code>, <code>try_home</code>, <code>try_inverted_home</code>:
+  As above, but no error will be reported if the movement fully
+  completes without an endstop event stopping the move early.</li>
+</ul>
 <p><code>MANUAL_STEPPER STEPPER=config_name GCODE_AXIS=[A-Z]
 [LIMIT_VELOCITY=&lt;velocity&gt;] [LIMIT_ACCEL=&lt;accel&gt;]
 [INSTANTANEOUS_CORNER_VELOCITY=&lt;velocity&gt;]</code>: If the <code>GCODE_AXIS</code>
@@ -5900,21 +5913,23 @@ information from your slicer to Klipper.</p>
 <a href="Config_Reference.html#bltouch">bltouch config section</a> is enabled (also
 see the <a href="Probe_Calibrate.html">probe calibrate guide</a>).</p>
 <h4 id="probe_1">PROBE<a class="headerlink" href="#probe_1" title="Permanent link">&para;</a></h4>
-<p><code>PROBE [PROBE_SPEED=&lt;mm/s&gt;] [LIFT_SPEED=&lt;mm/s&gt;] [SAMPLES=&lt;count&gt;]
-[SAMPLE_RETRACT_DIST=&lt;mm&gt;] [SAMPLES_TOLERANCE=&lt;mm&gt;]
+<p><code>PROBE [METHOD=&lt;value&gt;] [PROBE_SPEED=&lt;mm/s&gt;] [LIFT_SPEED=&lt;mm/s&gt;]
+[SAMPLES=&lt;count&gt;] [SAMPLE_RETRACT_DIST=&lt;mm&gt;] [SAMPLES_TOLERANCE=&lt;mm&gt;]
 [SAMPLES_TOLERANCE_RETRIES=&lt;count&gt;] [SAMPLES_RESULT=median|average]</code>:
 Move the nozzle downwards until the probe triggers. If any of the
 optional parameters are provided they override their equivalent
-setting in the <a href="Config_Reference.html#probe">probe config section</a>.</p>
+setting in the <a href="Config_Reference.html#probe">probe config section</a>.
+The optional parameter <code>METHOD</code> is probe-specific.</p>
 <h4 id="query_probe">QUERY_PROBE<a class="headerlink" href="#query_probe" title="Permanent link">&para;</a></h4>
 <p><code>QUERY_PROBE</code>: Report the current status of the probe ("triggered" or
 "open").</p>
 <h4 id="probe_accuracy">PROBE_ACCURACY<a class="headerlink" href="#probe_accuracy" title="Permanent link">&para;</a></h4>
-<p><code>PROBE_ACCURACY [PROBE_SPEED=&lt;mm/s&gt;] [SAMPLES=&lt;count&gt;]
+<p><code>PROBE_ACCURACY [METHOD=&lt;value&gt;] [PROBE_SPEED=&lt;mm/s&gt;] [SAMPLES=&lt;count&gt;]
 [SAMPLE_RETRACT_DIST=&lt;mm&gt;]</code>: Calculate the maximum, minimum, average,
 median, and standard deviation of multiple probe samples. By default,
 10 SAMPLES are taken. Otherwise the optional parameters default to
-their equivalent setting in the probe config section.</p>
+their equivalent setting in the probe config section.
+The optional parameter <code>METHOD</code> is probe-specific.</p>
 <h4 id="probe_calibrate">PROBE_CALIBRATE<a class="headerlink" href="#probe_calibrate" title="Permanent link">&para;</a></h4>
 <p><code>PROBE_CALIBRATE [SPEED=&lt;speed&gt;] [&lt;probe_parameter&gt;=&lt;value&gt;]</code>: Run a
 helper script useful for calibrating the probe's z_offset. See the
@@ -5963,13 +5978,14 @@ SET_PIN command without an explicit CYCLE_TIME parameter will use the
 <a href="Config_Reference.html#quad_gantry_level">quad_gantry_level config section</a>
 is enabled.</p>
 <h4 id="quad_gantry_level_1">QUAD_GANTRY_LEVEL<a class="headerlink" href="#quad_gantry_level_1" title="Permanent link">&para;</a></h4>
-<p><code>QUAD_GANTRY_LEVEL [RETRIES=&lt;value&gt;] [RETRY_TOLERANCE=&lt;value&gt;]
+<p><code>QUAD_GANTRY_LEVEL [METHOD=&lt;value&gt;] [RETRIES=&lt;value&gt;] [RETRY_TOLERANCE=&lt;value&gt;]
 [HORIZONTAL_MOVE_Z=&lt;value&gt;] [&lt;probe_parameter&gt;=&lt;value&gt;]</code>: This command
 will probe the points specified in the config and then make
 independent adjustments to each Z stepper to compensate for tilt. See
 the PROBE command for details on the optional probe parameters. The
 optional <code>RETRIES</code>, <code>RETRY_TOLERANCE</code>, and <code>HORIZONTAL_MOVE_Z</code> values
-override those options specified in the config file.</p>
+override those options specified in the config file.
+The optional parameter <code>METHOD</code> is probe-specific.</p>
 <h3 id="query_adc">[query_adc]<a class="headerlink" href="#query_adc" title="Permanent link">&para;</a></h3>
 <p>The query_adc module is automatically loaded.</p>
 <h4 id="query_adc_1">QUERY_ADC<a class="headerlink" href="#query_adc_1" title="Permanent link">&para;</a></h4>
@@ -6333,13 +6349,14 @@ automatically upon homing.</p>
 <p>The following commands are available when the
 <a href="Config_Reference.html#z_tilt">z_tilt config section</a> is enabled.</p>
 <h4 id="z_tilt_adjust">Z_TILT_ADJUST<a class="headerlink" href="#z_tilt_adjust" title="Permanent link">&para;</a></h4>
-<p><code>Z_TILT_ADJUST [RETRIES=&lt;value&gt;] [RETRY_TOLERANCE=&lt;value&gt;]
+<p><code>Z_TILT_ADJUST [METHOD=&lt;value&gt;] [RETRIES=&lt;value&gt;] [RETRY_TOLERANCE=&lt;value&gt;]
 [HORIZONTAL_MOVE_Z=&lt;value&gt;] [&lt;probe_parameter&gt;=&lt;value&gt;]</code>: This command
 will probe the points specified in the config and then make
 independent adjustments to each Z stepper to compensate for tilt. See
 the PROBE command for details on the optional probe parameters. The
 optional <code>RETRIES</code>, <code>RETRY_TOLERANCE</code>, and <code>HORIZONTAL_MOVE_Z</code> values
-override those options specified in the config file.</p>
+override those options specified in the config file.
+The optional parameter <code>METHOD</code> is probe-specific.</p>
 
               
             </article>
